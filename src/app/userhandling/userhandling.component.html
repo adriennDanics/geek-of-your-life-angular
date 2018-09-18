@@ -1,0 +1,20 @@
+<div class="container">
+  <form id="signUp">
+    <h3>Create Your Account</h3>
+    <p>Just enter your email address<br>
+      and your password for join.
+    </p>
+    <input class="w100" type="email" placeholder="Insert eMail" required autocomplete='off' />
+    <input type="password" placeholder="Insert Password" required />
+    <input type="password" placeholder="Verify Password" required />
+    <button class="form-btn sx log-in" type="button" (click)="onLogin()">Log In</button>
+    <button class="form-btn dx" type="submit">Sign Up</button>
+  </form>
+  <form id="signIn">
+    <h3>Welcome<br>Back !</h3>
+    <input type="email" placeholder="Insert eMail" autocomplete='off' required />
+    <input type="password" placeholder="Insert Password" required />
+    <button class="form-btn sx back" type="button" (click)="onBack()">Back</button>
+    <button class="form-btn dx" type="submit">Log In</button>
+  </form>
+</div>
