@@ -43,6 +43,7 @@ export class UserhandlingComponent implements OnInit {
     let body = new HttpParams();
     body.set('email', this.loginForm.get("email").value );
     body.set('password', this.loginForm.get("password").value);
+    //partially successful
     this.http.post("http://localhost:9999/user/login", body, {
       headers: myheader}).subscribe(
       data => {
@@ -56,6 +57,7 @@ export class UserhandlingComponent implements OnInit {
   }
 
   onSubmitSignUp() {
+    //untested
     let body = "email=" + this.signUpForm.get("newEmail").value + "&password=" + this.signUpForm.get("newPassword").value;
     this.http.post("http://localhost:9999/user", body).subscribe(
       data => {
