@@ -1,20 +1,20 @@
 <div class="container">
-  <form id="signUp">
+  <form id="signUp" [formGroup]="signUpForm" (ngSubmit)="onSubmitSignUp()">
     <h3>Create Your Account</h3>
     <p>Just enter your email address<br>
       and your password for join.
     </p>
-    <input class="w100" type="email" placeholder="Insert eMail" required autocomplete='off' />
-    <input type="password" placeholder="Insert Password" required />
-    <input type="password" placeholder="Verify Password" required />
-    <button class="form-btn sx log-in" type="button" (click)="onLogin()">Log In</button>
+    <input class="w100" type="email" placeholder="Insert eMail" required autocomplete='off' formControlName= "newEmail">
+    <input type="password" placeholder="Insert Password" required formControlName= "newPassword">
+    <input type="password" placeholder="Verify Password" required formControlName= "newPasswordConfirm">
+    <button class="form-btn sx log-in" type="button" (click)="onLoginButton()">Log In</button>
     <button class="form-btn dx" type="submit">Sign Up</button>
   </form>
-  <form id="signIn">
+  <form id="signIn" [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
     <h3>Welcome<br>Back !</h3>
-    <input type="email" placeholder="Insert eMail" autocomplete='off' required />
-    <input type="password" placeholder="Insert Password" required />
-    <button class="form-btn sx back" type="button" (click)="onBack()">Back</button>
+    <input type="email" placeholder="Insert eMail" autocomplete='off' required formControlName= "email" >
+    <input type="password" placeholder="Insert Password" required formControlName= "password" >
+    <button class="form-btn sx back" type="button" (click)="onBackButton()">Back</button>
     <button class="form-btn dx" type="submit">Log In</button>
   </form>
 </div>
