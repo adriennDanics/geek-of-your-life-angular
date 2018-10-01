@@ -17,7 +17,6 @@ import { Observable } from 'rxjs';
 
 export class AppComponent {
   title = 'geek-of-your-life';
-  user: boolean = false;
 
   public users = [];
 
@@ -33,6 +32,6 @@ export class AppComponent {
   }
 
   getUsers():Observable<IUser[]> {
-    return this.http.get<IUser[]>('http://localhost:8080/users/')
+    return this.http.get<IUser[]>('http://localhost:9999/users/')
   }
 }
