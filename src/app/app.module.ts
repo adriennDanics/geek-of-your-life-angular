@@ -9,6 +9,8 @@ import { UserhandlingComponent } from './userhandling/userhandling.component';
 import { CategorieslistComponent } from './categorieslist/categorieslist.component';
 import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
 import { ProfileComponent } from './userhandling/profile/profile.component';
+import { UserhandlingService } from './userhandling/userhandling.service';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +27,7 @@ import { ProfileComponent } from './userhandling/profile/profile.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [UserhandlingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

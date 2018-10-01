@@ -18,7 +18,7 @@ import { Observable } from 'rxjs';
 export class AppComponent {
   title = 'geek-of-your-life';
 
-  public users = [];
+  //public users = [];
 
   constructor(private http: HttpClient) {
 
@@ -27,11 +27,11 @@ export class AppComponent {
   ngOnInit() {
     //let obs = this.http.get('http://localhost:8080/users/');
     //obs.subscribe((response) => console.log(response))
-    this.getUsers().subscribe(data => this.users = data);
+    //this.getUsers().subscribe(data => this.users = data);
     
   }
 
-  getUsers():Observable<IUser[]> {
+  /*getUsers():Observable<IUser[]> {
     return this.http.get<IUser[]>('http://localhost:9999/users/')
-  }
+  }*/
 }

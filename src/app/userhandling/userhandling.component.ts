@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from "@angular/forms";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {IUser} from "../user";
 import {$, element} from "protractor";
+import { UserhandlingService } from './userhandling.service';
 
 @Component({
   selector: 'app-userhandling',
@@ -12,6 +13,7 @@ import {$, element} from "protractor";
 export class UserhandlingComponent implements OnInit {
   public userUsing: boolean = false;
   public notMatchingRegistratioinPassword:boolean = false;
+  public users = [];
 
   loginForm = new FormGroup({
     email: new FormControl(''),
@@ -24,9 +26,11 @@ export class UserhandlingComponent implements OnInit {
     newPasswordConfirm: new FormControl(''),
   });
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private userService: UserhandlingService) { }
 
   ngOnInit() {
+      this.userService.getUsers()
+        .subscribe(data => this.users = data);
   }
 
   onLoginButton() {
@@ -57,7 +61,7 @@ export class UserhandlingComponent implements OnInit {
     );
   }
 
-  onSubmitSignUp() {
+  /* onSubmitSignUp() {
     if(this.signUpForm.get("newPassword").value === this.signUpForm.get("newPasswordConfirm").value) {
       this.http.post<IUser>("http://localhost:9999/user", null, {
         observe: "body",
@@ -71,7 +75,7 @@ export class UserhandlingComponent implements OnInit {
     } else {
       this.notMatchingRegistratioinPassword = true;
     }
-  }
+  } */
 
   fixUserToShowLogin() {
     this.userUsing = true
