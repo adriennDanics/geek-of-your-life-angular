@@ -6,8 +6,8 @@
       and your password for join.
     </p>
     <input class="w100" type="email" placeholder="Insert eMail" required autocomplete='off' formControlName= "newEmail">
-    <input type="password" placeholder="Insert Password" required [(formControlName)]= "newPassword">
-    <input type="password" placeholder="Verify Password" required [(formControlName)]= "newPasswordConfirm">
+    <input type="password" placeholder="Insert Password" required formControlName= "newPassword">
+    <input type="password" placeholder="Verify Password" required formControlName= "newPasswordConfirm">
     <button class="form-btn sx log-in" type="button" (click)="onLoginButton()">Log In</button>
     <button class="form-btn dx" type="submit">Sign Up</button>
   </form>
