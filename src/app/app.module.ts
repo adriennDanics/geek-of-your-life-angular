@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -20,10 +20,10 @@ import { ProfileComponent } from './userhandling/profile/profile.component';
     ProfileComponent
   ],
   imports: [
-    FormsModule,
-    ReactiveFormsModule,
+    HttpClientModule,
     BrowserModule,
-    HttpClientModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

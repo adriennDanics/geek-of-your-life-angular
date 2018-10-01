@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from "@angular/forms";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
+import {IUser} from "../user";
+import {$, element} from "protractor";
 
 @Component({
   selector: 'app-userhandling',
@@ -8,6 +10,9 @@ import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
   styleUrls: ['./userhandling.component.css']
 })
 export class UserhandlingComponent implements OnInit {
+  public userUsing: boolean = false;
+  public notMatchingRegistratioinPassword:boolean = false;
+
   loginForm = new FormGroup({
     email: new FormControl(''),
     password: new FormControl(''),
@@ -39,33 +44,36 @@ export class UserhandlingComponent implements OnInit {
   }
 
   onSubmitLogin() {
-    const myheader = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
-    let body = new HttpParams();
-    body.set('email', this.loginForm.get("email").value );
-    body.set('password', this.loginForm.get("password").value);
     //partially successful
-    this.http.post("http://localhost:9999/user/login", body, {
-      headers: myheader}).subscribe(
+    this.http.post<IUser>("http://localhost:9999/user/login", null, {
+      observe:"body",
+      params: new HttpParams().set('email', this.loginForm.get("email").value).set('password', this.loginForm.get("password").value)}).subscribe(
       data => {
-        console.log(data);
+        this.fixUserToShowLogin();
       },
       err => console.log({
         error: err
       })
     );
-    console.warn(this.loginForm.value);
   }
 
   onSubmitSignUp() {
-    //untested
-    let body = "email=" + this.signUpForm.get("newEmail").value + "&password=" + this.signUpForm.get("newPassword").value;
-    this.http.post("http://localhost:9999/user", body).subscribe(
-      data => {
-        console.log(data);
-      },
-      err => console.log({
-        error: err
-      })
-    );    console.warn(this.signUpForm.value);
+    if(this.signUpForm.get("newPassword").value === this.signUpForm.get("newPasswordConfirm").value) {
+      this.http.post<IUser>("http://localhost:9999/user", null, {
+        observe: "body",
+        params: new HttpParams().set('email', this.signUpForm.get("newEmail").value).set('password', this.signUpForm.get("newPassword").value)
+      }).subscribe(
+        data => this.fixUserToShowLogin(),
+        err => console.log({
+          error: err
+        })
+      );
+    } else {
+      this.notMatchingRegistratioinPassword = true;
+    }
+  }
+
+  fixUserToShowLogin() {
+    this.userUsing = true
   }
 }
