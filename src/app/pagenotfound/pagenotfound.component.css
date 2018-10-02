@@ -1,4 +1,14 @@
-@import 'https://fonts.googleapis.com/css?family=Dosis|Roboto:300,400';
+h3, h5 {
+  font-family: 'diediedie', arial, sans-serif;
+}
 h3 {
-  font-family: 'Roboto', sans-serif;
+  font-size: 50pt;
+}
+
+.jumbotron {
+  background-color: black !important;
+  background-image: url("https://static.tumblr.com/8fa1b0e164d96593af102c77fa0f45c1/bpvwg4w/vGWolodhm/tumblr_static_cpualrq6nb40wo000wwcg8og4.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  color: white;
 }

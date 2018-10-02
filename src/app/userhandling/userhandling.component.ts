@@ -4,6 +4,7 @@ import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {IUser} from "../user";
 import {$, element} from "protractor";
 import { UserhandlingService } from './userhandling.service';
+import {Router} from "@angular/router";
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -32,7 +33,7 @@ export class UserhandlingComponent implements OnInit {
     newPasswordConfirm: new FormControl(''),
   });
 
-  constructor(private http: HttpClient, private userService: UserhandlingService) { }
+  constructor(private http: HttpClient, private userService: UserhandlingService, private router: Router) { }
 
   ngOnInit() {
       this.userService.getUsers()
@@ -57,7 +58,7 @@ export class UserhandlingComponent implements OnInit {
     //partially successful
     this.http.post<IUser>("http://localhost:9999/user/login", JSON.stringify({'email': this.loginForm.get("email").value, 'password': this.loginForm.get("password").value}), httpOptions).subscribe(
       data => {
-        this.fixUserToShowLogin();
+        this.router.navigate(["/user/" + data.id]);
       },
       err => console.log({
         error: err
@@ -68,8 +69,10 @@ export class UserhandlingComponent implements OnInit {
    onSubmitSignUp() {
     if(this.signUpForm.get("newPassword").value === this.signUpForm.get("newPasswordConfirm").value) {
       this.http.post<IUser>("http://localhost:9999/user", JSON.stringify({'email': this.signUpForm.get("newEmail").value, 'password': this.signUpForm.get("newPassword").value}), httpOptions).subscribe(
-        data => this.fixUserToShowLogin(),
-        err => console.log({
+        data =>  {
+          this.router.navigate(["/categories"]);
+        },
+      err => console.log({
           error: err
         })
       );
