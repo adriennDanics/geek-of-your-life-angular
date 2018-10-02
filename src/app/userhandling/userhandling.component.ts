@@ -5,6 +5,12 @@ import {IUser} from "../user";
 import {$, element} from "protractor";
 import { UserhandlingService } from './userhandling.service';
 
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json'
+  })
+};
+
 @Component({
   selector: 'app-userhandling',
   templateUrl: './userhandling.component.html',
@@ -49,9 +55,7 @@ export class UserhandlingComponent implements OnInit {
 
   onSubmitLogin() {
     //partially successful
-    this.http.post<IUser>("http://localhost:9999/user/login", null, {
-      observe:"body",
-      params: new HttpParams().set('email', this.loginForm.get("email").value).set('password', this.loginForm.get("password").value)}).subscribe(
+    this.http.post<IUser>("http://localhost:9999/user/login", JSON.stringify({'email': this.loginForm.get("email").value, 'password': this.loginForm.get("password").value}), httpOptions).subscribe(
       data => {
         this.fixUserToShowLogin();
       },
@@ -61,12 +65,9 @@ export class UserhandlingComponent implements OnInit {
     );
   }
 
-  /* onSubmitSignUp() {
+   onSubmitSignUp() {
     if(this.signUpForm.get("newPassword").value === this.signUpForm.get("newPasswordConfirm").value) {
-      this.http.post<IUser>("http://localhost:9999/user", null, {
-        observe: "body",
-        params: new HttpParams().set('email', this.signUpForm.get("newEmail").value).set('password', this.signUpForm.get("newPassword").value)
-      }).subscribe(
+      this.http.post<IUser>("http://localhost:9999/user", JSON.stringify({'email': this.signUpForm.get("newEmail").value, 'password': this.signUpForm.get("newPassword").value}), httpOptions).subscribe(
         data => this.fixUserToShowLogin(),
         err => console.log({
           error: err
@@ -75,7 +76,7 @@ export class UserhandlingComponent implements OnInit {
     } else {
       this.notMatchingRegistratioinPassword = true;
     }
-  } */
+  }
 
   fixUserToShowLogin() {
     this.userUsing = true

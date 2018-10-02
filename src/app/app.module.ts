@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -10,7 +11,26 @@ import { CategorieslistComponent } from './categorieslist/categorieslist.compone
 import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
 import { ProfileComponent } from './userhandling/profile/profile.component';
 import { UserhandlingService } from './userhandling/userhandling.service';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
+const appRoutes: Routes = [
+  { path: 'login', component: UserhandlingComponent },
+  { path: 'user/:id',      component: ProfileComponent },
+  {
+    path: 'categories',
+    component: CategorieslistComponent,
+    data: { title: 'Categories List' }
+  },
+  { path: '',
+    redirectTo: '/login',
+    pathMatch: 'full'
+  },
+  { path: 'login',
+    redirectTo: '/categories',
+    pathMatch: 'full'
+  },
+  { path: '**', component: PagenotfoundComponent }
+];
 
 @NgModule({
   declarations: [
@@ -19,13 +39,15 @@ import { UserhandlingService } from './userhandling/userhandling.service';
     UserhandlingComponent,
     CategorieslistComponent,
     QuestionnaireComponent,
-    ProfileComponent
+    ProfileComponent,
+    PagenotfoundComponent
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [UserhandlingService],
   bootstrap: [AppComponent]
