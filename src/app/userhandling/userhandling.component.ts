@@ -20,7 +20,7 @@ const httpOptions = {
 export class UserhandlingComponent implements OnInit {
   public userUsing: boolean = false;
   public notMatchingRegistratioinPassword:boolean = false;
-  public users = [];
+  public users = []; 
 
   loginForm = new FormGroup({
     email: new FormControl(''),

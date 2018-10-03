@@ -12,6 +12,7 @@ import { QuestionnaireComponent } from './questionnaire/questionnaire.component'
 import { ProfileComponent } from './userhandling/profile/profile.component';
 import { UserhandlingService } from './userhandling/userhandling.service';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { CategorieslistService } from './categorieslist/categorieslist.service';
 
 const appRoutes: Routes = [
   { path: 'login', component: UserhandlingComponent },
@@ -49,7 +50,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [UserhandlingService],
+  providers: [UserhandlingService, CategorieslistService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
