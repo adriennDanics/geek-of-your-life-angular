@@ -59,6 +59,7 @@ export class UserhandlingComponent implements OnInit {
     this.http.post<IUser>("http://localhost:9999/user/login", JSON.stringify({'email': this.loginForm.get("email").value, 'password': this.loginForm.get("password").value}), httpOptions).subscribe(
       data => {
         this.router.navigate(["/user/" + data.id]);
+        localStorage.setItem("isLoggedIn", "true");
       },
       err => console.log({
         error: err
@@ -71,6 +72,7 @@ export class UserhandlingComponent implements OnInit {
       this.http.post<IUser>("http://localhost:9999/user", JSON.stringify({'email': this.signUpForm.get("newEmail").value, 'password': this.signUpForm.get("newPassword").value}), httpOptions).subscribe(
         data =>  {
           this.router.navigate(["/categories"]);
+          localStorage.setItem("isLoggedIn", "true");
         },
       err => console.log({
           error: err
@@ -79,9 +81,5 @@ export class UserhandlingComponent implements OnInit {
     } else {
       this.notMatchingRegistratioinPassword = true;
     }
-  }
-
-  fixUserToShowLogin() {
-    this.userUsing = true
   }
 }

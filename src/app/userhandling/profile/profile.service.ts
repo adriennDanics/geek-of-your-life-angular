@@ -14,7 +14,6 @@ export class ProfileService {
   constructor(private http: HttpClient) { }
 
   getProfile(id: number):Observable<IUserDetail> {
-    console.log(this._url+id);
     return this.http.get<IUserDetail>(this._url+id);
   }
 }

@@ -1,3 +1,25 @@
-<p>
-  profile works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <img class="img-rounded" src="{{ profile.profileImage }}" alt="Image"></div>
+    <div class="col-md-6 details">
+      <blockquote>
+        <div>{{ profile.fullName }}</div>
+        <div>{{ profile.birthDate }}</div>
+        <div>{{ profile.nickName }}</div>
+        <div>{{ profile.shortDescription }}</div>
+      </blockquote>
+    </div>
+  </div>
+</div>
+<div class="container">
+<div class="row" >
+  <div class="image-block col-sm-4" *ngFor="let category of profile.categories"
+       [style.backgroundImage]="'url('+ category.image +')'"
+       [style.backgroundSize]="'cover'"
+       [style.backgroundRepeat]="'no-repeat'"
+       [style.backgroundPosition]="'center top'">
+    <div>{{ category.category }}</div>
+  </div>
+</div>
+</div>

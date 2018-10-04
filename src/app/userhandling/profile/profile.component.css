@@ -1,0 +1,15 @@
+img {
+  max-width: 200px;
+  max-height: 200px;
+}
+.details {
+  border-left: 3px solid #792834 !important;
+}
+
+.container {
+  padding: 5px;
+}
+
+.img {
+  text-align: center;
+}

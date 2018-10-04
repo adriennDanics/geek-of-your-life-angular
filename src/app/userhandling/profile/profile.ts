@@ -3,9 +3,7 @@ import { ICategory } from "../../categorieslist/category";
 
 export interface IUserDetail {
     id: number;
-    user: {
-        [key: string]: IUser
-    };
+    user: IUser;
     fullName: string;
     nickName: string;
     birthDate: string;
