@@ -10,7 +10,11 @@ import {Router} from "@angular/router";
 })
 export class ProfileComponent implements OnInit {
 
+<<<<<<< Updated upstream
   public profile: IUserDetail;
+=======
+  private profile;
+>>>>>>> Stashed changes
 
   constructor(private router: Router, private profileService: ProfileService) { }
 
