@@ -10,7 +10,8 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class ProfileComponent implements OnInit {
 
-  private profile;
+  public profile: IUserDetail;
+  public id: number;
 
   constructor(private router: Router, private profileService: ProfileService, private routeActive: ActivatedRoute) {
     this.routeActive.params.subscribe(params => this.id = Number(params));
