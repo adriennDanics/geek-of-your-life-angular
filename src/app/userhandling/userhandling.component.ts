@@ -2,11 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from "@angular/forms";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {IUser} from "../user";
-import {$, element} from "protractor";
 import { UserhandlingService } from './userhandling.service';
 import {Router} from "@angular/router";
 
-const httpOptions = {
+export const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json'
   })
@@ -18,7 +17,6 @@ const httpOptions = {
   styleUrls: ['./userhandling.component.css']
 })
 export class UserhandlingComponent implements OnInit {
-  public userUsing: boolean = false;
   public notMatchingRegistratioinPassword:boolean = false;
   public users = []; 
 
