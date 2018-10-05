@@ -4,6 +4,10 @@ import { ICategory } from "../../categorieslist/category";
 export interface IUserDetail {
     id: number;
     user: IUser;
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
     fullName: string;
     nickName: string;
     birthDate: string;
@@ -14,4 +18,5 @@ export interface IUserDetail {
     shortDescription: string;
     profileImage: string;
 }
+
 
